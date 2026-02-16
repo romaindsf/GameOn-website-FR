@@ -208,15 +208,24 @@ input {
   font-size: 20px;
   height: 48px;
 }
+.input-error {
+  border: 2px solid #e54858;
+  box-shadow: 0 0 0 3px rgba(229, 72, 82, 0.2);
+}
+.checkbox-label.radio-error .checkbox-icon,
+.checkbox2-label.radio-error .checkbox-icon {
+  border-color: #e54858;
+  box-shadow: 0 0 0 4px rgba(229, 72, 82, 0.25);
+}
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
+  font-size: 0.7em;
   color: #e54858;
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
-  text-align: right;
-  line-height: 0.3;
+  text-align: left;
+  line-height: 1.2;
   opacity: 0;
   transition: 0.3s;
 }
@@ -517,6 +526,33 @@ footer {
   }
 }
 
+/* Confirmation */
+.modal-body {
+  position: relative;
+}
+.confirmation {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #232323;
+  z-index: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.confirmation.active {
+  display: flex;
+}
+.confirmation-message {
+  font-size: 2.2rem;
+  font-weight: normal;
+  margin-bottom: 2rem;
+}
+
 @keyframes modalopen {
   from {
     opacity: 0;
@@ -526,4 +562,3 @@ footer {
     opacity: 1;
   }
 }
-
