@@ -15,7 +15,7 @@ const formReserve = document.querySelector("form[name='reserve']");
 const confirmation = document.getElementById("confirmation");
 const btnClose = document.getElementById("btn-close");
 
-// Événements d'ouverture et de fermeture de la modale
+// Événements d'ouverture/fermeture de la modale
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 closeBtn.addEventListener("click", closeModal);
 btnClose.addEventListener("click", closeModal);
@@ -23,7 +23,7 @@ modalbg.addEventListener("click", (e) => {
   if (e.target === modalbg) closeModal();
 });
 
-// Ouvre le formulaire modal
+// Ouvre le formulaire
 function launchModal() {
   modalbg.style.display = "block";
 }
@@ -44,7 +44,7 @@ function validate() {
   const champsLocation = document.querySelectorAll("input[name='location']");
   const champConditions = document.getElementById("checkbox1");
 
-  // Les gardes-fous s'assurent qu'on ne manipule jamais des nœuds DOM absents.
+  // Sécuriter
   if (!champPrenom || !champNom) {
     return false;
   }
@@ -61,7 +61,7 @@ function validate() {
     return false;
   }
 
-  // trim() supprime les espaces en début et fin de la saisie utilisateur
+  // trim() supprime les espaces
   const valeurPrenom = champPrenom.value.trim();
   const valeurNom = champNom.value.trim();
   const valeurEmail = champEmail.value.trim();
@@ -70,8 +70,10 @@ function validate() {
 
   const champBirthdate = document.getElementById("birthdate");
 
-  // Active ou désactive l'affichage d'erreur sur le parent .formData
+  // Active/désactive l'affichage d'erreur sur le parent .formData
   const setError = (champ, estErreur) => {
+    //.closest cible l'element champ puis son parent 
+    // puis le parent du parent etc...
     const formData = champ.closest(".formData");
     if (formData) {
       formData.setAttribute("data-error-visible", estErreur ? "true" : "false");
@@ -79,7 +81,7 @@ function validate() {
     if (estErreur) valide = false;
   };
 
-  // Prénom et nom : min 2 caractères
+  // Prénom/nom : min 2 chars
   setError(champPrenom, valeurPrenom.length < 2);
   setError(champNom, valeurNom.length < 2);
 
@@ -90,7 +92,7 @@ function validate() {
   // Date de naissance
   setError(champBirthdate, !champBirthdate.value);
 
-  // Quantité : doit être un nombre
+  // Quantité doit être un nombre
   const valeurNumeric = parseFloat(valeurQuantity);
   setError(champQuantity, valeurQuantity === "" || Number.isNaN(valeurNumeric));
 
