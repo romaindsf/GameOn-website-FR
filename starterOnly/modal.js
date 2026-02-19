@@ -7,7 +7,7 @@ function editNav() {
   }
 }
 
-// DOM Elements
+// Éléments du DOM
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const closeBtn = document.querySelector(".close");
@@ -15,7 +15,7 @@ const formReserve = document.querySelector("form[name='reserve']");
 const confirmation = document.getElementById("confirmation");
 const btnClose = document.getElementById("btn-close");
 
-// launch modal event
+// Événements d'ouverture et de fermeture de la modale
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 closeBtn.addEventListener("click", closeModal);
 btnClose.addEventListener("click", closeModal);
@@ -23,19 +23,19 @@ modalbg.addEventListener("click", (e) => {
   if (e.target === modalbg) closeModal();
 });
 
-// launch modal form
+// Ouvre le formulaire modal
 function launchModal() {
   modalbg.style.display = "block";
 }
 
-// Close modal event
+// Ferme la modale et réinitialise l'affichage
 function closeModal() {
   modalbg.style.display = "none";
   formReserve.style.visibility = "visible";
   confirmation.classList.remove("active");
 }
 
-// Form validation
+// Validation du formulaire
 function validate() {
   const champPrenom = document.getElementById("first");
   const champNom = document.getElementById("last");
@@ -44,7 +44,7 @@ function validate() {
   const champsLocation = document.querySelectorAll("input[name='location']");
   const champConditions = document.getElementById("checkbox1");
 
-  // Guard clauses ensure we never manipulate DOM nodes that aren't present.
+  // Les gardes-fous s'assurent qu'on ne manipule jamais des nœuds DOM absents.
   if (!champPrenom || !champNom) {
     return false;
   }
@@ -61,7 +61,7 @@ function validate() {
     return false;
   }
 
-  // trim() removes any whitespace at the start or end of the user’s input
+  // trim() supprime les espaces en début et fin de la saisie utilisateur
   const valeurPrenom = champPrenom.value.trim();
   const valeurNom = champNom.value.trim();
   const valeurEmail = champEmail.value.trim();
@@ -70,7 +70,7 @@ function validate() {
 
   const champBirthdate = document.getElementById("birthdate");
 
-  // Helper: set or clear error on a .formData parent
+  // Active ou désactive l'affichage d'erreur sur le parent .formData
   const setError = (champ, estErreur) => {
     const formData = champ.closest(".formData");
     if (formData) {
