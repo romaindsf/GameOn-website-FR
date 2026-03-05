@@ -44,23 +44,6 @@ function validate() {
   const champsLocation = document.querySelectorAll("input[name='location']");
   const champConditions = document.getElementById("checkbox1");
 
-  // Sécuriter
-  if (!champPrenom || !champNom) {
-    return false;
-  }
-  if (!champEmail) {
-    return false;
-  }
-  if (!champQuantity) {
-    return false;
-  }
-  if (champsLocation.length === 0) {
-    return false;
-  }
-  if (!champConditions) {
-    return false;
-  }
-
   // trim() supprime les espaces
   const valeurPrenom = champPrenom.value.trim();
   const valeurNom = champNom.value.trim();
