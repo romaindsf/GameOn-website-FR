@@ -64,16 +64,20 @@ function validate() {
     if (estErreur) valide = false;
   };
 
-  // Prénom/nom : min 2 chars
-  setError(champPrenom, valeurPrenom.length < 2);
-  setError(champNom, valeurNom.length < 2);
+  // Prénom/nom : min 2 chars, lettres (accentuées incluses), tiret uniquement
+  const nomRegex = /^[a-zA-ZÀ-ÿ\- ]{2,}$/;
+  setError(champPrenom, !nomRegex.test(valeurPrenom));
+  setError(champNom, !nomRegex.test(valeurNom));
 
   // Email valide
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   setError(champEmail, !emailRegex.test(valeurEmail));
 
   // Date de naissance
-  setError(champBirthdate, !champBirthdate.value);
+  const dateNaissance = new Date(champBirthdate.value);
+  const aujourdhui = new Date();
+  const dateInvalide = !champBirthdate.value || dateNaissance >= aujourdhui;
+  setError(champBirthdate, dateInvalide);
 
   // Quantité doit être un nombre
   const valeurNumeric = parseFloat(valeurQuantity);
